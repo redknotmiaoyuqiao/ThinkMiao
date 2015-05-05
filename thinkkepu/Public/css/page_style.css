@@ -1,0 +1,59 @@
+
+
+#model4_img{
+    height: 125px;
+    width: 400px;
+    border: 0px solid red;
+}
+
+#img_model2{
+    height: 300px;
+    width: 100%;
+}
+
+#daohangimg{
+    width: 60px;
+    height: 60px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+#daohangdiv{
+    border: 1px solid #eff0ef;
+}
+
+
+#dingbudaohangimg{
+    margin-bottom: 40px;
+    margin-top: 10px;
+}
+
+#dingbudaohangform{
+    margin-bottom: 40px;
+    margin-top: 37px;
+}
+
+#model4_class{
+    margin-left: 7px;
+    color: #FF6600;
+}
+
+#model4_time{
+    margin-right: 10px;
+    text-align: right;
+    color: #3399FF;
+}
+
+#wen_class{
+    color: #FF6600;
+}
+
+#wen_author{
+    text-align: right;
+    color: #3399FF;
+}
+
+.kepu_footer{
+    text-align: center;
+}

@@ -1,0 +1,105 @@
+<ul class="nav nav-list accordion-group">
+    <li class="nav-header">
+
+        <i class="icon-plus icon-white"></i> 布局设置
+    </li>
+    <li style="display: list-item;" class="rows" id="estRows">
+        <div class="lyrow ui-draggable"><a href="#close" class="remove label label-important"><i
+
+                class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i
+
+                class="icon-move"></i>拖动</span>
+
+            <div class="preview">
+                <input value="12" type="text">
+            </div>
+            <div class="view">
+                <div class="row-fluid clearfix">
+                    <div class="span12 column"></div>
+                </div>
+            </div>
+        </div>
+
+
+    </li>
+</ul>
+<ul class="nav nav-list accordion-group">
+    <li class="nav-header"><i class="icon-plus icon-white"></i> 内容
+    </li>
+    <li style="display: none;" class="boxes" id="elmBase">
+        <div style="border: 0px solid red">
+            <input id="s_id" type="text" style="width: 153px"/>
+            <input id="s_btn" onclick="s_on_btn()" type="button" style="width: 100%" value="搜索"/>
+
+            <p id="s_show"></p>
+        </div>
+
+        <script>
+            onload = function () {
+
+                $("#model4").hide();
+
+            }
+
+            function getLocalTime(nS) {
+                return new Date(parseInt(nS) * 1000).toLocaleString().replace(/年|月/g, "-").replace(/日/g, " ");
+            }
+
+            function s_on_btn() {
+                $("#model4").hide();
+                var s = $("#s_id").val();
+
+                $.get("/thinkkepu/admin.php/Subject/getwen?id=" + s,
+                        function (result) {
+                            var res = JSON.parse(result);
+
+                            $("#model4_title").html('<a href="/thinkkepu/index.php/Index/wen?art_id=' + res['kepu_art_id'] + '">' +
+                            res['kepu_art_title'] + '</a>');
+                            $("#model4_show").html(res['kepu_art_show']);
+                            $("#model4_img").attr("src", "/files/" + res['kepu_art_img']);
+                            $("#model4_class").html(res['kepu_art_class']);
+                            $ti = getLocalTime(res['kepu_art_time']);
+                            $("#model4_time").html(res['kepu_art_author'] + "   " + $ti);
+
+                            //$("#model4_id").val(res['kepu_art_id']);
+                            $("#model4_id").attr("value",res['kepu_art_id']);
+                            $("#model4").show();
+                        }
+                );
+            }
+        </script>
+
+        <div class="box box-element ui-draggable" id="model4">
+            <a href="#close" class="remove label label-important">
+                <i class="icon-remove icon-white"></i>删除
+            </a>
+                            <span class="drag label">
+                                <i class="icon-move"></i>
+                                拖动
+                            </span>
+
+            <div class="preview">图片 标题 快照</div>
+            <div class="view">
+                <div class="row-fluid clearfix">
+
+                    <div class="span4">
+                        <p id="model4_class">计算机</p>
+                        <img width="300px" height="250px" id="model4_img"
+                             src="__PUBLIC__/layoutit/img/a.jpg">
+                    </div>
+                    <div class="span8">
+                        <p id="model4_time">作者 2015/1/15</p>
+                        <h4 contenteditable="true" id="model4_title">标题</h4>
+
+                        <p contenteditable="true" id="model4_show">neirong</p>
+                    </div>
+
+                    <input id="model4_id" hidden="hidden" value="-1">
+                </div>
+                <hr>
+            </div>
+        </div>
+
+
+    </li>
+</ul>

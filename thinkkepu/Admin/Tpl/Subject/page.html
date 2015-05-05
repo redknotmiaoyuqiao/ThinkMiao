@@ -1,0 +1,56 @@
+<ul class="nav nav-list accordion-group">
+    <li class="nav-header"><i class="icon-plus icon-white"></i> 页面
+    </li>
+    <li style="display: none;" class="boxes" id="elmBase">
+        <div style="border: 0px solid red">
+            <input id="page_s_id" type="text" style="width: 153px"/>
+            <input id="page_s_btn" onclick="page_s_on_btn()" type="button" style="width: 100%"
+                   value="搜索"/>
+            <p id="page_s_show"></p>
+        </div>
+
+        <script>
+            function page_onload(){
+                $("#page_model1").hide();
+                $("#page_model2").hide();
+            }
+            function page_s_on_btn(){
+
+                $("#page_model1").hide();
+                $("#page_model2").hide();
+
+                var page_id = $("#page_s_id").val();
+                $.get("/thinkkepu/admin.php/Subject/getpage?id=" + page_id,
+                        function(result) {
+                            var res = JSON.parse(result);
+                            $("#page_s_show").html(res['kepu_subject_title']);
+
+                            $("#page_model1").show();
+                            $("#page_model2").show();
+
+                            $("#page_model1_title").html('<a href="/thinkkepu/index.php/Index/subject?id='
+                            + res['kepu_subject_id'] +'">'+res['kepu_subject_title'] +
+                            '</a>');
+
+                            $("#page_model2_title").html('<a href="/thinkkepu/index.php/Index/subject?id='
+                            + res['kepu_subject_id'] +'">'+res['kepu_subject_title'] +
+                            '</a>');
+                        }
+                );
+            }
+        </script>
+
+        <div class="box box-element ui-draggable" id="page_model1">
+            <a href="#close" class="remove label label-important">
+                <i class="icon-remove icon-white"></i> 删除
+            </a>
+                            <span class="drag label">
+                                <i class="icon-move"></i>拖动
+                            </span>
+            <div class="preview">题目</div>
+            <div class="view">
+                <h4 contenteditable="true" id="page_model1_title"></h4>
+            </div>
+        </div>
+    </li>
+</ul>

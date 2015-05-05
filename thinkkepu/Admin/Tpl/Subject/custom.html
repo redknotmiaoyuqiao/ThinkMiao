@@ -1,0 +1,22 @@
+<ul class="nav nav-list accordion-group">
+    <li class="nav-header"><i class="icon-plus icon-white"></i> 自定义动态模块
+    </li>
+    <li style="display: none;" class="boxes" id="elmBase">
+
+        <volist name="custom_list" id="vo">
+            <div class="box box-element ui-draggable">
+                <a href="#close" class="remove label label-important">
+                    <i class="icon-remove icon-white"></i> 删除
+                </a>
+                            <span class="drag label">
+                                <i class="icon-move"></i>拖动
+                            </span>
+                <div class="preview">{$vo.kepu_custom_module_list_title}</div>
+                <div class="view">
+                    {$vo.kepu_custom_module_list_tag}
+                </div>
+            </div>
+        </volist>
+    </li>
+
+</ul>

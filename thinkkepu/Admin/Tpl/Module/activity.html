@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="img/kp_top.jpg">
+    <title>ThinkMiao控制台</title>
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/dashboard/css/dashboard.css" rel="stylesheet">
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/dashboard/js/docs.min.js"></script>
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">ThinkMiao控制台</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 sidebar">
+            <include file="Index:left"/>
+        </div>
+        <div class="col-md-10 col-md-offset-2 main">
+
+            <include file="Module:left"/>
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>题目</th>
+                    <th>快照</th>
+                    <th>图片</th>
+                    <th>地址</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <volist name="activity_list" id="activity_vo">
+                    <tr>
+                        <td> {$activity_vo.kepu_module_activity_id}</td>
+                        <td> {$activity_vo.kepu_module_activity_title}</td>
+                        <td> {$activity_vo.kepu_module_activity_show}</td>
+                        <td>
+                            <a href="{$activity_vo.kepu_module_activity_img}">
+                                <img style="height: 50px;width: 100px;"
+                                     src="{$activity_vo.kepu_module_activity_img}"/>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{$activity_vo.kepu_module_activity_url}">{$activity_vo.kepu_module_activity_url}</a>
+                        </td>
+                        <td>
+                            <a href="/thinkkepu/admin.php/Module/delActivity?id={$activity_vo.kepu_module_activity_id}">
+                                <button type="button" class="btn btn-xs btn-danger">删除</button>
+                            </a>
+                        </td>
+                    </tr>
+                </volist>
+                </tbody>
+            </table>
+            <div class="col-md-4">
+                <form action="/thinkkepu/admin.php/Module/addActivity" method="post" enctype="multipart/form-data">
+                    题目：<input type="text" name="title"/><br><br>
+                    快照：<input type="text" name="show"/><br><br>
+                    地址：<input type="text" name="url"/><br><br>
+                    图片：<input type="file" name="img"><br><br>
+
+                    <input type="submit" value="添加">
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<ul class="nav nav-list accordion-group">
+    <li class="nav-header"><i class="icon-plus icon-white"></i> 自定义静态模块
+    </li>
+    <li style="display: none;" class="boxes" id="elmBase">
+        <volist name="list" id="vo">
+            <div class="box box-element ui-draggable">
+                <a href="#close" class="remove label label-important">
+                    <i class="icon-remove icon-white"></i> 删除
+                </a>
+                            <span class="drag label">
+                                <i class="icon-move"></i>拖动
+                            </span>
+                <div class="preview">{$vo.kepu_staitc_module_name}</div>
+                <div class="view">
+                    {$vo.kepu_staitc_module_text}
+                </div>
+            </div>
+        </volist>
+
+        <a href="/thinkkepu/admin.php/Module/addstatic">
+            <button>添加</button>
+        </a>
+    </li>
+
+</ul>

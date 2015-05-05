@@ -1,0 +1,168 @@
+<ul class="nav nav-list accordion-group">
+    <li class="nav-header"><i class="icon-plus icon-white"></i> 内容
+    </li>
+    <li style="display: none;" class="boxes" id="elmBase">
+        <div style="border: 0px solid red">
+            <input id="s_id" type="text" style="width: 153px"/>
+            <input id="s_btn" onclick="s_on_btn()" type="button" style="width: 100%" value="搜索"/>
+            <p id="s_show"></p>
+        </div>
+
+        <script>
+            onload = function(){
+                $("#model1").hide();
+                $("#model2").hide();
+                $("#model3").hide();
+                $("#model4").hide();
+                $("#model5").hide();
+            }
+
+            function getLocalTime(nS) {
+                return new Date(parseInt(nS) * 1000).toLocaleString().replace(/年|月/g, "-").replace(/日/g, " ");
+            }
+
+            function s_on_btn(){
+                $("#model1").hide();
+                $("#model2").hide();
+                $("#model3").hide();
+                $("#model4").hide();
+                $("#model5").hide();
+                var s = $("#s_id").val();
+
+                $.get("/thinkkepu/admin.php/Subject/getwen?id=" + s,
+                        function(result){
+                            var res = JSON.parse(result);
+                            $("#s_show").html(res['kepu_art_title']);
+
+                            $("#model1_title").html('<a href="/thinkkepu/index.php/Index/wen?art_id='+res['kepu_art_id']+'">' + res['kepu_art_title'] + '</a>');
+                            $("#model1_show").html(res['kepu_art_show']);
+                            $("#model1").show();
+
+                            $("#model2_title").html('<a href="/thinkkepu/index.php/Index/wen?art_id='+res['kepu_art_id']+'">' +
+                            res['kepu_art_title'] + '</a>');
+                            $("#model2").show();
+
+                            $("#model3_img").attr("src", "/files/" + res['kepu_art_img']);
+                            $("#model3").show();
+
+                            $("#model4_title").html('<a href="/thinkkepu/index.php/Index/wen?art_id='+res['kepu_art_id']+'">' +
+                            res['kepu_art_title'] + '</a>');
+                            $("#model4_show").html(res['kepu_art_show']);
+                            $("#model4_img").attr("src", "/files/" + res['kepu_art_img']);
+                            $("#model4_class").html(res['kepu_art_class']);
+                            $ti = getLocalTime(res['kepu_art_time']);
+                            $("#model4_time").html(res['kepu_art_author'] + "   " + $ti);
+                            $("#model4").show();
+
+                            $("#model5_title").html('<a href="/thinkkepu/index.php/Index/wen?art_id='+res['kepu_art_id']+'">' +
+                            res['kepu_art_title'] + '</a>');
+                            $("#model5_img").attr("src", "/files/" + res['kepu_art_img']);
+                            $("#model5").show();
+                        }
+                );
+            }
+        </script>
+
+
+
+        <div class="box box-element ui-draggable" id="model1">
+            <a href="#close" class="remove label label-important">
+                <i class="icon-remove icon-white"></i>删除
+            </a>
+                            <span class="drag label">
+                                <i class="icon-move"></i>
+                                拖动
+                            </span>
+            <div class="preview">标题 快照</div>
+            <div class="view">
+                <h3 contenteditable="true" id="model1_title">标题</h3>
+
+                <p contenteditable="true" id="model1_show">本可视化布局程序在HTML5浏览器上运行更加完美, 能实现自动本地化保存,
+                    即使关闭了网页,
+                    下一次打开仍然能恢复上一次的操作.
+                </p>
+                <HR>
+            </div>
+        </div>
+
+        <div class="box box-element ui-draggable" id="model2">
+            <a href="#close" class="remove label label-important">
+                <i class="icon-remove icon-white"></i>删除
+            </a>
+                            <span class="drag label">
+                                <i class="icon-move"></i>
+                                拖动
+                            </span>
+            <div class="preview">标题</div>
+            <div class="view">
+                <h4 contenteditable="true" id="model2_title">标题</h4>
+            </div>
+        </div>
+
+        <div class="box box-element ui-draggable" id="model3">
+            <a href="#close" class="remove label label-important">
+                <i class="icon-remove icon-white"></i>删除
+            </a>
+                            <span class="drag label">
+                                <i class="icon-move"></i>
+                                拖动
+                            </span>
+            <div class="preview">图片</div>
+            <div class="view">
+                <a><img id="model3_img" src=""></a>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="box box-element ui-draggable" id="model4">
+            <a href="#close" class="remove label label-important">
+                <i class="icon-remove icon-white"></i>删除
+            </a>
+                            <span class="drag label">
+                                <i class="icon-move"></i>
+                                拖动
+                            </span>
+            <div class="preview">图片 标题 快照</div>
+            <div class="view">
+                <div class="row-fluid clearfix">
+                    <div class="span4">
+                        <p id="model4_class">计算机</p>
+                        <img width="300px" height="250px" id="model4_img"
+                             src="__PUBLIC__/layoutit/img/a.jpg">
+                    </div>
+                    <div class="span8">
+                        <p id="model4_time">作者 2015/1/15</p>
+                        <h4 contenteditable="true" id="model4_title">标题</h4>
+
+                        <p contenteditable="true" id="model4_show">neirong</p>
+                    </div>
+
+                </div>
+                <hr>
+            </div>
+        </div>
+
+
+
+        <div class="box box-element ui-draggable" id="model5">
+            <a href="#close" class="remove label label-important">
+                <i class="icon-remove icon-white"></i>删除
+            </a>
+                            <span class="drag label">
+                                <i class="icon-move"></i>
+                                拖动
+                            </span>
+            <div class="preview">图片 标题 上下</div>
+            <div class="view">
+                <img id="model5_img"/>
+                <h5 contenteditable="true" id="model5_title">标题</h5>
+                <hr>
+            </div>
+        </div>
+
+
+    </li>
+</ul>
